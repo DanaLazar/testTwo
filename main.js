@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use(express.static('public'))
-app.get('*', (_req, res)=>{
+app.get('*', (req, res)=>{
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
@@ -32,6 +32,6 @@ app.get('*', (_req, res)=>{
 //     console.log(`🚀  Server ready at ${url}`);
 // });
 
-app.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+const PORT = process.env.PORT || 4000
+
+app.listen(PORT, () => console.log(`🚀 Server started on port ${PORT}`));
