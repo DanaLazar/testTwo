@@ -4,6 +4,11 @@ const { graphqlHTTP } = require('express-graphql')
 
 import typeDefs from './schema';
 import resolvers from './resolvers';
+import { makeExecutableSchema } from '@graphql-tools/schema'
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+})
 
 const path = require('path');
 const app = express();
@@ -16,7 +21,7 @@ const app = express();
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: typeDefs,
+    schema: schema,
     graphiql: true,
     introspection: true,
   }),
